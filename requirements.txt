@@ -1,0 +1,2 @@
+# Dependencies will be added as we reach each feature.
+# First planned dependency: PySide6
