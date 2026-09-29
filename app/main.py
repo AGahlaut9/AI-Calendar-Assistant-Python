@@ -1,7 +1,34 @@
 """
-Main entry point for the AI Calendar Assistant.
-
-We will build this file step-by-step as the project develops.
+This is the controller file
+Name: Main.py
+Description:
 """
+import sys
 
-# TODO: Initialize the PySide6 desktop application.
+from PySide6.QtWidgets import QApplication
+from ui.main_window import MainWindow
+from services.ai_service import parse_requested_info
+
+
+app = QApplication(sys.argv)
+
+window = MainWindow()
+
+
+
+window.show()
+
+def handle_user_request():
+    print("1. Parse button clicked")
+
+    user_request = window.get_user_request()
+    print("2. User typed:", user_request)
+
+    event_data = parse_requested_info(user_request)
+
+    print("3. AI returned:", event_data)
+
+    window.parse_button.clicked.connect(handle_user_request)
+
+
+sys.exit(app.exec())
