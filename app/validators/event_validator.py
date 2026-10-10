@@ -16,7 +16,7 @@ This function is what needs to be applied to the data tht comes back from the AI
 def apply_default_end_time(event_data: InputSchema) -> InputSchema:
 
     # Only apply the default if the request does not need clarification
-    if event_data["needs_clarification" == True]:
+    if event_data["needs_clarification"]:
         return event_data
 
     # If the user already supplied an end time, do not change it

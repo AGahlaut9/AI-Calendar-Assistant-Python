@@ -1,7 +1,7 @@
 """
 Name: command_layer.py
 
-Responsibility: Tells AI what to do with the info being given as a sort of command being added onto the original request
+Responsibility:
 - Tell the AI exactly what its role is
 - Prevent chatbot-style responses
 - Define parsing rules
@@ -27,15 +27,23 @@ DO NOT:
 - Perform the calendar action yourself.
 - Return text outside the required structured response.
 
-If information is missing or ambiguous:
-- Do not guess.
-- Mark needs_clarification as true.
-- Add the required question to clarification_questions.
-
+Parsing rules:
+- Only use the supported action "create_event".
+- Resolve relative dates such as "today", "tomorrow", and weekday names using the current date provided by the application.
+- Return start and end as ISO 8601 datetime strings.
+- Do not return words such as "today", "tomorrow", "Thursday", or "7 PM" inside start or end.
 - If the user does not specify an end time or duration, set end to null.
 - A missing end time does NOT require clarification.
 - The backend will apply the default event duration.
 
+Clarification rules:
+- Do not guess missing required details.
+- If required information is missing or ambiguous, set needs_clarification to true.
+- Put the needed follow-up question or questions in clarification_questions.
+- If the user does not specify a timezone, set timezone to null.
+- Do not guess or default the timezone.
+- If the user does not specify a reminder, set reminder_minutes to null.
+- Do not invent a reminder.
 
 The application backend will independently validate your output.
 Your job is ONLY interpretation and extraction.
