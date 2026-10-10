@@ -53,7 +53,7 @@ The application logic runs locally on the user's computer and communicates direc
 ## Planned Technology Stack
 
 * Python
-* PySide6
+* PySide6 -> Library which helped me create Desktop GUI
 * OpenAI API
 * Google Calendar API
 * Google OAuth 2.0
